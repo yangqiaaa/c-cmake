@@ -10,7 +10,9 @@ file(GLOB LINUX_SOURCE_DIR
 #    ./source/2-student-handle-system/*.c
 #    ./source/3-leetcode/*.c)
 #
-#set(MY_INCLUDE_DIR 
+set(MY_INCLUDE_DIR 
+    #include
+    ./include/1-base)
     #lib
 #    ./lib/ut
     #include
@@ -20,7 +22,7 @@ file(GLOB LINUX_SOURCE_DIR
   #  ./include/3-leetcode)
 
 # include file
-#include_directories (${MY_INCLUDE_DIR})
+include_directories (${MY_INCLUDE_DIR})
 
 #link lib ±àÒëÆ÷×Ô´ø
 # LINK_LIBRARIES(-lm -lpthread -lmysqlclient)
