@@ -1,22 +1,39 @@
 #!/bin/bash
 
+
 # echo -e "\e[1;36m \e[0m"
-# \e[1;36 将颜色设置为青色 \e[0将颜色重新置回。
-# 首先知道shell中终端打印有echo printf一般常用的就是echo咯；
-# 注：字体颜色 重置=0，
-#黑色=30，
-#红色=31，
-#绿色=32，
+
+#\ E [1; 36 set color to cyan \ E [0 reset color back.
+
+#First of all, I know that echo printf is printed on the terminal in the shell. Generally, 
+# echo is commonly used;
+
+#Note: font color reset = 0,
+
+#Black = 30,
+
+#Red = 31,
+
+#Green = 32,
+
 # ***=33，
-#蓝色=34， 洋红=35， 青色=36， 白色=37.
-# 背景颜色 重置=0，黑色=40，红色=41，绿色=42，
-# ***=43，蓝色=44， 洋红=45， 青色=46， 白色=47.
-# 要打印彩色文本，可输入如下命令：
+
+#Blue = 34, magenta = 35, cyan = 36, white = 37
+
+#Background color reset = 0, black = 40, red = 41, green = 42,
+
+#* * * = 43, blue = 44, magenta = 45, cyan = 46, white = 47
+
+#To print color text, enter the following command:
+
 # echo -e "\e[1;36m \e[0m"
-# 复制代码代码如下:
+
+#The copy code is as follows:
+
 
 echo "if you don't know how to use:'./1.sh help'"
-##cmake && make 出现在选项里会引起shell歧义
+
+##The presence of cmake & & make in the option will cause shell ambiguity
 case $* in
 "cmake make")
     # mkdir ./build
@@ -129,4 +146,3 @@ case $* in
     ;;   
 esac
 
-#ortp生成四个可执行文件
