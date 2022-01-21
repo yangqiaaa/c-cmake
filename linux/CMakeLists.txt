@@ -4,7 +4,8 @@ project(3)
 
 # source file
 file(GLOB LINUX_SOURCE_DIR 
-    ./source/linux.c)
+    ./source/linux.c
+    ./source/1-base/*.c)
 #    ./source/main.c
 #    ./source/1/*.c
 #    ./source/2-student-handle-system/*.c

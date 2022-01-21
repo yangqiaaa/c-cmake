@@ -4,7 +4,8 @@ project(2)
 
 # source file
 file(GLOB WINDOWS_SOURCE_DIR 
-    ./source/windows.c)
+    ./source/windows.c
+    ./source/1-base/*.c)
 #    ./source/main.c
 #    ./source/1/*.c
 #    ./source/2-student-handle-system/*.c
