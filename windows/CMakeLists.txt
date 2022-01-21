@@ -32,7 +32,7 @@ include_directories (${MY_INCLUDE_DIR})
 #endif()
 
 #if(${windows})
-#    LINK_LIBRARIES(-lm -lwsock32)
+LINK_LIBRARIES(-lm -lwsock32)
 #endif()
 
 # find lib µÚÈý·½¿â

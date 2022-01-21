@@ -26,6 +26,7 @@
 #include "1-5-student.h"
 #include "1-6-num.h"
 #include "1-7-ip.h"
+#include "1-8-ntp.h"
 
 
 
