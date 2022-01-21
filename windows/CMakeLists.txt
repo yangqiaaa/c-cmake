@@ -5,7 +5,8 @@ project(2)
 # source file
 file(GLOB WINDOWS_SOURCE_DIR 
     ./source/windows.c
-    ./source/1-base/*.c)
+    ./source/1-base/*.c
+    ./source/3-leetcode/*.c)
 #    ./source/main.c
 #    ./source/1/*.c
 #    ./source/2-student-handle-system/*.c
@@ -13,7 +14,9 @@ file(GLOB WINDOWS_SOURCE_DIR
 #
 set(MY_INCLUDE_DIR 
     #include
-    ./include/1-base)
+    ./include/ut
+    ./include/1-base
+    ./include/3-leetcode)
     #lib
 #    ./lib/ut
     #include

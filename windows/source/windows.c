@@ -28,6 +28,11 @@
 #include "1-7-ip.h"
 #include "1-8-ntp.h"
 
+#include "3-1-leetcode.h"
+#include <assert.h>
+#include <limits.h>
+#include <stddef.h>
+#include <stdint.h>
 
 
 /***************************************Macros***********************************/
@@ -97,6 +102,7 @@ int run_main()
         if(!strcmp(cmd,"help")) run_help();
         else if( !strcmp(cmd,"sync") ) picture_file_synthesizer();
         else if( !strcmp(cmd,"student") ) run_1_5_student();
+        else if( !strcmp(cmd,"leetcode") ) run_3_1_leetcode_main();
         // else if( !strcmp(cmd,"ortpsend") ) ortp_send();
         // else if( !strcmp(cmd,"ortprecv") ) ortp_recv();
         // else if( !strcmp(cmd,"1-4-carray") ) run_1_4_carraytest();
