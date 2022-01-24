@@ -21,6 +21,7 @@
 /***************************************includes***********************************/
 //#include"xxx.h"
 #include "1-1-print.h"
+#include "1-4-log.h"
 
 /***************************************Macros***********************************/
 //#define
@@ -38,7 +39,12 @@ enum MYINFOR
 	//no use
 	INFOR_CMD_FIND,
 	//file
+	//file open success
 	INFOR_FILE_OPEN_SUCCESS,
+	//file close success
+	INFOR_FILE_CLOSE_SUCCESS,
+	//log
+	INFOR_LOG_SET_LEVEL_SUCCESS,
 	//list
 	//list init success
 	INFOR_LIST_INIT_SUCCESS,
@@ -84,6 +90,9 @@ static const char *mystrinfor(int x)
 	{
 		//file
 		case INFOR_FILE_OPEN_SUCCESS:			return "file open success";
+		case INFOR_FILE_CLOSE_SUCCESS:			return "file close success";
+		//log
+		case INFOR_LOG_SET_LEVEL_SUCCESS:		return "log set level success";
 		//list
 		case INFOR_LIST_INIT_SUCCESS:			return "list init success";			
 		case INFOR_LIST_CREATE_NODE_SUCCESS:	return "list create node success";

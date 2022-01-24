@@ -60,11 +60,13 @@ int picture_file_synthesizer(void)
 		printf("fail to open file\n",pic_name);
 		return -1;
 	}
+
 	if(!(f_file = fopen(file_name,"rb")))
 	{
 		printe("fail to open file\n",file_name);
 		return -1;
 	}
+
 	if(!(f_finish = fopen(finish_name,"wb")))
 	{
 		printe("fail to open file\n",finish_name);
@@ -84,7 +86,6 @@ int picture_file_synthesizer(void)
 	}
 	fclose(f_file);
 	fclose(f_finish);
-	
 	return 0;
 }
 

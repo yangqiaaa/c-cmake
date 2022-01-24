@@ -61,9 +61,9 @@ void run_help(void)
     printi("cmd 'sync' picture file synthesizer\n");
     printi("cmd 'student' student handle system\n");
     printi("cmd '1-4-carray' test data struct carrcy\n");
-    printi("please press any key to end.......\n");
-	getchar();//run main scanf输入cmd之后需要enter键,带有一个换行键
-    getchar();
+    //printi("please press any key to end.......\n");
+	//getchar();//run main scanf输入cmd之后需要enter键,带有一个换行键
+    //getchar();
 }
 
 /** 
@@ -109,7 +109,7 @@ int run_main()
         else if(!strcmp(cmd,"quit")) break;
         else run_exit();
         //Sleep(1000);
-        system("cls");
+        //system("cls");
         printi("cmd:");
         scanf("%s",cmd);
     }
@@ -129,7 +129,7 @@ int run_main()
 */
 void login(void)
 {
-    system("cls");
+    //system("cls");
     printi("\n");//figlet yangqi \\转义字符
     printi("                               _ \n");
     printi(" _   _  __ _ _ __   __ _  __ _(_)\n");
@@ -138,9 +138,9 @@ void login(void)
     printi(" \\__, |\\__,_|_| |_|\\__, |\\__, |_|\n");
     printi(" |___/             |___/    |_|  \n");
     printi("\n");
-    printi("please press any key to end\n");
-    getchar();
-    system("cls");
+    //printi("please press any key to end\n");
+    //getchar();
+    //system("cls");
 }
 
 int zlog_hello()
@@ -224,6 +224,7 @@ int zlog_d()
 */
 int main(void)
 {
+    system("cls");
     //problem run no close,so next build fail
     //zlog_test();
     //zlog_hello();
@@ -231,16 +232,19 @@ int main(void)
     
     //printf("please press any key to end\n");
     //getchar();
-    log_init();
+    FILE *log = log_init();
     //In Windows system, color printing needs to call the screen clearing function, 
     //otherwise it is just random code
-    system("cls");
-
+    
+    myerror(ERROR_FILE_OPEN_FAIL);
 	login();
     run_main();
+    
+    log_close(log);
 
     //Let the console not flash in the windows system
-    printf("please press any key to end\n");
+    printi("please press any key to end\n");
+    getchar();
     getchar();
 }
 
