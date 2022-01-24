@@ -13,6 +13,7 @@ file(GLOB WINDOWS_SOURCE_DIR
 #    ./source/3-leetcode/*.c)
 #
 set(MY_INCLUDE_DIR 
+    ./lib/zlog/include
     #include
     ./include/ut
     ./include/1-base
@@ -40,7 +41,7 @@ LINK_LIBRARIES(-lm -lwsock32)
 
 # find lib 第三方库
 #if(${linux})
- #   find_library(ORTP_LIB libortp.so.9.0.0 ${PROJECT_SOURCE_DIR}/lib/1-ortp)
+find_library(ZLOG_LIB zlog.lib ${PROJECT_SOURCE_DIR}/lib/zlog/lib)
  #   find_library(MELON_LIB libmelon.so ${PROJECT_SOURCE_DIR}/lib/2-melon)
 #endif()
 
@@ -49,7 +50,7 @@ add_executable (main ${WINDOWS_SOURCE_DIR})
 
 #可执行文件链接库
 #if(${linux})
- #   target_link_libraries (main ${ORTP_LIB})
+target_link_libraries (main ${ZLOG_LIB})
   #  target_link_libraries (main ${MELON_LIB})
 #endif()
 

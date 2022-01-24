@@ -37,6 +37,9 @@ enum MYINFOR
 	INFOR_NONE=0,
 	//no use
 	INFOR_CMD_FIND,
+	//file
+	INFOR_FILE_OPEN_SUCCESS,
+	//list
 	//list init success
 	INFOR_LIST_INIT_SUCCESS,
 	//list create node success
@@ -79,6 +82,8 @@ static const char *mystrinfor(int x)
     static char tmp[100]={"0"};
 	switch (x)
 	{
+		//file
+		case INFOR_FILE_OPEN_SUCCESS:			return "file open success";
 		//list
 		case INFOR_LIST_INIT_SUCCESS:			return "list init success";			
 		case INFOR_LIST_CREATE_NODE_SUCCESS:	return "list create node success";

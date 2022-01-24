@@ -41,6 +41,10 @@ enum MYERROR
 	ERROR_NONE=0,
 	//main cmd no find
 	ERROR_CMD_NO_FIND,
+	//file
+	//file open fail
+	ERROR_FILE_OPEN_FAIL,
+	// list
 	//list init fail
 	ERROR_LIST_INIT_FAIL,
 	//list create node fail
@@ -85,6 +89,8 @@ static const char *mystrerror(int x)
 	{
 		//cmd
 		case ERROR_CMD_NO_FIND:				return "cmd no find";
+		//file
+		case ERROR_FILE_OPEN_FAIL:			return "file open fail";
 		//list
 		case ERROR_LIST_INIT_FAIL:			return "list init fail";
 		case ERROR_LIST_CREATE_NODE_FAIL:	return "list create node fail";

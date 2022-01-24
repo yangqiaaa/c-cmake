@@ -22,6 +22,7 @@
 #include "1-1-print.h"
 #include "1-2-myinfor.h"
 #include "1-3-myerror.h"
+#include "1-4-log.h"
 #include "1-4-pfy.h"
 #include "1-5-student.h"
 #include "1-6-num.h"
@@ -29,10 +30,9 @@
 #include "1-8-ntp.h"
 
 #include "3-1-leetcode.h"
-#include <assert.h>
-#include <limits.h>
-#include <stddef.h>
-#include <stdint.h>
+
+
+#include "zlog.h"
 
 
 /***************************************Macros***********************************/
@@ -143,6 +143,75 @@ void login(void)
     system("cls");
 }
 
+int zlog_hello()
+{
+	int rc;
+	zlog_category_t *zc;
+
+	rc = zlog_init("test_hello.conf");
+	if (rc) {
+		printf("init failed\n");
+		return -1;
+	}
+
+	zc = zlog_get_category("my_cat");
+	if (!zc) {
+		printf("get cat fail\n");
+		zlog_fini();
+		return -2;
+	}
+
+	zlog_info(zc, "hello, zlog");
+    zlog_info(zc, "hello, yangqi");
+
+	zlog_fini();
+    return 0;
+}
+
+int zlog_test()
+{
+    	int rc;
+	zlog_category_t *zc;
+	
+
+	rc = zlog_init("test_conf.conf");
+	if (rc) {
+		printf("init failed, try zlog-chk-conf test_conf.conf for more detail\n");
+		return -1;
+	}
+
+	zc = zlog_get_category("my_cat");
+	if (!zc) {
+		printf("get cat fail\n");
+		zlog_fini();
+		return -2;
+	}
+
+	//zlog_info(zc, "hello, zlog");
+    zlog_info(zc, "124143254534646464646");
+    zlog_info(zc, "asfggafqregrgewfqe");
+
+	zlog_fini();
+	printf("log end\n");
+	return 0;
+}
+
+int zlog_d()
+{
+    int rc;
+
+	rc = dzlog_init("test_default.conf", "my_cat");
+	//rc = dzlog_init(NULL, "my_cat");
+	if (rc) {
+		printf("init failed\n");
+		return -1;
+	}
+
+	dzlog_info("hello, zlog.haha.\r\n");
+    dzlog_info("hello, yangqi.\r\n");
+	zlog_fini();
+    return 0;
+}
 
 /** 
  * @brief 
@@ -155,6 +224,14 @@ void login(void)
 */
 int main(void)
 {
+    //problem run no close,so next build fail
+    //zlog_test();
+    //zlog_hello();
+    //zlog_d();
+    
+    //printf("please press any key to end\n");
+    //getchar();
+    log_init();
     //In Windows system, color printing needs to call the screen clearing function, 
     //otherwise it is just random code
     system("cls");
