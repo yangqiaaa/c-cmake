@@ -21,6 +21,8 @@
 #include "1-3-myerror.h"
 #include "1-5-student.h"
 
+#include <windows.h>
+
 /***************************************Macros***********************************/
 //#define
 

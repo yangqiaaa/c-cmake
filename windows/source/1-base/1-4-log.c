@@ -29,7 +29,7 @@
 
 /***************************************Variables***********************************/
 static FILE *log = NULL;
-static int log_level_flag = LOG_LEVEL_INFOR;
+static enum LOG_LEVEL log_level_flag = LOG_LEVEL_INFOR;
 
 
 /***************************************Functions***********************************/
@@ -43,9 +43,9 @@ static int log_level_flag = LOG_LEVEL_INFOR;
  * @date 2022-01-24 10:27:30
  * @version V1.0.0
 */
-extern FILE *log_init(void)
+extern FILE *log_init(const char *log_path, const char* mode)
 {
-    log = fopen("../data/log/my.log","a+");
+    log = fopen(log_path, mode);
     if(log == NULL)
     {
         myerror(ERROR_FILE_OPEN_FAIL);
@@ -54,7 +54,16 @@ extern FILE *log_init(void)
 	return log;
 }
 
-
+/** 
+ * @brief 
+ * @file 1-4-log.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-24 15:37:12
+ * @version V1.0.0
+*/
 extern int log_close(FILE *log)
 {
     int ret;
@@ -68,15 +77,36 @@ extern int log_close(FILE *log)
 }
 
 
+/** 
+ * @brief 
+ * @file 1-4-log.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-24 15:37:20
+ * @version V1.0.0
+*/
 extern FILE *log_get_log_state(void)
 {
     return log;
 }
 
-extern int log_set_log_level(enum LOG_LEVEL log_level)
+
+/** 
+ * @brief 
+ * @file 1-4-log.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-24 15:37:25
+ * @version V1.0.0
+*/
+extern int log_set_level(enum LOG_LEVEL log_level)
 {
     int i;
-    for(i = LOF_LEVEL_DEBUG; i < LOG_LEVEL_MAX; i++)
+    for(i = LOG_LEVEL_DEBUG; i < LOG_LEVEL_MAX; i++)
     {
         if(i == log_level)
         {
@@ -87,6 +117,43 @@ extern int log_set_log_level(enum LOG_LEVEL log_level)
     }
     myerror(ERROR_LOG_SET_LEVEL_FAIL);
     return ERROR_LOG_SET_LEVEL_FAIL;
+}
+
+
+
+/** 
+ * @brief 
+ * @file 1-4-log.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-24 16:05:53
+ * @version V1.0.0
+*/
+extern enum LOG_LEVEL log_get_level(void)
+{
+    return log_level_flag;
+}
+
+
+/** 
+ * @brief 
+ * @file 1-4-log.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-24 16:05:59
+ * @version V1.0.0
+*/
+extern char *log_get_level_buf(enum LOG_LEVEL level)
+{
+    if(level == LOG_LEVEL_DEBUG) return "DEBUG";
+    else if(level == LOG_LEVEL_INFOR) return "INFOR";
+    else if(level == LOG_LEVEL_WARNING) return "WARNING";
+    else if(level == LOG_LEVEL_ERROR) return "ERROR";
+    else return "UNKNOW";
 }
 
 /* [] END OF FILE */

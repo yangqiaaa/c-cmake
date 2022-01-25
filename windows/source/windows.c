@@ -232,7 +232,9 @@ int main(void)
     
     //printf("please press any key to end\n");
     //getchar();
-    FILE *log = log_init();
+    
+    //FILE *log = log_init("../data/log/my.log", "a+");
+
     //In Windows system, color printing needs to call the screen clearing function, 
     //otherwise it is just random code
     
@@ -240,7 +242,7 @@ int main(void)
 	login();
     run_main();
     
-    log_close(log);
+    //log_close(log);
 
     //Let the console not flash in the windows system
     printi("please press any key to end\n");

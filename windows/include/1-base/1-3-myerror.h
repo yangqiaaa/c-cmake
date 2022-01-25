@@ -21,13 +21,13 @@
 //#include"xxx.h"
 #include "1-1-print.h"
 #include "1-4-log.h"
+#include "1-5-time.h"
+#include "1-7-str.h"
 
 #include <string.h>
-#include <time.h>
 #include <stdint.h>
-#include <windows.h>
 #include <stdlib.h>
-
+#include <time.h>
 /***************************************Macros***********************************/
 //#define
 /** 1
@@ -78,11 +78,13 @@ enum MYERROR
 
 /***************************************Variables***********************************/
 //static int i
-static unsigned char log_buf[1024];
-static char cur_time[20];
-static char error_path[100];
-static char line_buf[10];
-static char error_buf[100];
+static unsigned char log_buf[1024] = "0";
+static char log_level_buf[8] = "0";
+static char cur_time[20] = "0";
+static char error_path[100] = "0";
+static char function_buf[15] = "0";
+static char line_buf[10] = "0";
+static char error_buf[100] = "0";
 /***************************************Functions***********************************/
 //void test(void);
 /** 
@@ -126,56 +128,68 @@ static const char *mystrerror(int x)
 }
 
 
-//传入想要切割的字符，加一个参数
-static char* file_relative_path(char * dir, char *str)
+/** 
+ * @brief 
+ * @file 1-7-str.c
+ * @name 
+ * @param[in] void
+ * @return void
+ * @note 
+ * @date 2022-01-25 11:04:02
+ * @version V1.0.0
+*/
+static void log_fwrite(const char *log_path, const char* mode, const char *file_name, const char *function_name, int line)
 {
-	char path[100];
-	char *delim = "/";
-	char *tempin = NULL;
-	char *temp = NULL;
-	char ret[100];
-	strncpy(path, dir ,sizeof(path) - 1);
-	temp = path;
-	while(NULL != ( temp = strtok_r( temp, delim, &tempin) ))
-	{
-		//printf("temp[%s] tempin[%s]\n",temp,tempin);
-	    //printf("\n temp[%s] \n",temp);
-        //if(!strcmp(temp,"cmake"))
-		//if(!strcmp(temp,"1-c"))
-        if(!strcmp(temp, str))
-        {
-            //printi("111111 %s\n", tempin);
-			//return tempin;
-			strncpy( error_path, tempin, sizeof(error_path)-1 );
-			//printi("111111 %s\n", tempin);
-			return error_path;
-        }
-		temp = NULL;
-    }
-    return __FILE__;
+	FILE *log = log_init(log_path, mode);
+
+	//time
+	strcpy(log_buf, "["); 
+	strcpy(cur_time, time_get_current());
+	strcat(log_buf, cur_time); 
+	strcat(log_buf, "] ["); 
+
+	//log level
+	strcpy(log_level_buf , log_get_level_buf(LOG_LEVEL_ERROR) ); 
+	while( strlen(log_level_buf) < 7){ 
+		strcat(log_level_buf, " "); 
+	} 
+	strcat(log_buf, log_level_buf); 
+	strcat(log_buf, "] ["); 
+
+	//error path
+	strcpy(error_path, str_get_file_relative_path(file_name, "c-cmake-main"));
+	while( strlen(error_path) < 30){
+		strcat(error_path, " "); 
+	} 
+	strcat(log_buf, error_path);
+	strcat(log_buf, "] ["); 
+	//function name
+	//strcat(function_buf, __FUNCTION__);
+	strcpy(function_buf, function_name);
+	while( strlen(function_buf) < 15){ 
+		strcat(function_buf, " "); 
+	} 
+	strcat(log_buf, function_buf);
+	strcat(log_buf, "] [");
+
+	//line  
+	//itoa(__LINE__, line_buf, 10); 
+	itoa(line, line_buf, 10); 
+	while( strlen(line_buf) < 4){ 
+		strcat(line_buf, " "); 
+	} 
+	strcat(log_buf, line_buf); 
+	strcat(log_buf, "] ["); 
+	strcat(log_buf, error_buf); 
+	strcat(log_buf, "]\n"); 
+	if( log_get_log_state() != NULL){
+		fwrite(log_buf, 1, strlen(log_buf), log_get_log_state());
+	}
+
+	//printe("log_buf:%s\n", log_buf); 
+	memset(log_buf, 0, sizeof(log_buf)); 
+	log_close(log);
 }
-
-
-//显示当前时间
-static char* get_time(void)
-{
-	//char cur_time[20];
-    SYSTEMTIME sys;
-    //sys.wDayOfWeek;
-    //sys.wMilliseconds;
-	GetLocalTime(&sys);
-    snprintf(cur_time,20,"%4d-%02d-%02d %02d:%02d:%02d",sys.wYear,
-        sys.wMonth,sys.wDay,sys.wHour,sys.wMinute,sys.wSecond);
-	//printf("%4d/%02d/%02d %02d:%02d:%02d.%03d 星期%1d/n", sys.wYear, sys.wMonth, \
-    //    sys.wDay, sys.wHour, sys.wMinute, sys.wSecond, sys.wMilliseconds, sys.wDayOfWeek);
-    //printf("time:%s\n",cur_time);
-    return cur_time;
-	//char *tempout = NULL;
-	//tempout = cur_time;
-	//printf("time %s\n", tempout);
-	//return tempout;
-}
-
 
 /** 
  * @brief picture file synthesizer
@@ -188,26 +202,11 @@ static char* get_time(void)
  * "\n",only change a new line
 */
 #if 1
-#define myerror(i) do{printe("[%s] ", get_time()); \
-	printe("[%s] \n", file_relative_path(__FILE__, "c-cmake-main")); \
-	printe("[%s] [%d] %s\n",__FUNCTION__, __LINE__, mystrerror(i)); \
-	strcpy (log_buf, "["); \
-	strcat(log_buf, cur_time); \
-	strcat(log_buf, "] ["); \
-	strcat(log_buf, error_path); \
-	strcat(log_buf, "] ["); \
-	strcat(log_buf, __FUNCTION__); \
-	strcat(log_buf, "] ["); \
-	itoa(__LINE__, line_buf, 10); \
-	strcat(log_buf, line_buf); \
-	strcat(log_buf, "] ["); \
-	strcat(log_buf, error_buf); \
-	strcat(log_buf, "]\n"); \
-	if( log_get_log_state() != NULL){\
-		fwrite(log_buf, 1, strlen(log_buf), log_get_log_state());\
-	}\
-	printe("log_buf:%s\n", log_buf); \
-	memset(log_buf, 0, sizeof(log_buf)); \
+#define myerror(i) do{printe("[%s] ", time_get_current()); \
+	printe("[%-7s] ", log_get_level_buf(LOG_LEVEL_ERROR) ); \
+	printe("[%-30s] ", str_get_file_relative_path(__FILE__, "c-cmake-main")); \
+	printe("[%-15s] [%-4d] %s\n",__FUNCTION__, __LINE__, mystrerror(i)); \
+	log_fwrite("../data/log/my.log", "a+", __FILE__, __FUNCTION__, __LINE__); \
 }while(0);
 #else
 #define myerror(i) do{printe("%s %s %s\n%s %d %s\n", \

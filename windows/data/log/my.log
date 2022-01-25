@@ -1,5 +1,7 @@
-2022-01-24 14:08:42
-2022-01-24 14:08:58
+2022-01-24 14:08:42
+
+2022-01-24 14:08:58
+
 2022-01-24 14:09:35
 2022-01-24 14:09:49
 2022-01-24 14:18:19
@@ -9,3 +11,19 @@
 [2022-01-24 14:46:52] [windows/source/windows.c] [main] [239]
 [2022-01-24 14:47:17] [windows/source/windows.c] [main] [239]
 [2022-01-24 14:52:55] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 15:34:17] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:13:54] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:25:53] [ERROR] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:30:51] [ERROR] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:31:32] [ERROR] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:33:10] [ERROR] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:43:36] [ERROR ] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 16:46:02] [ERROR  ] [windows/source/windows.c] [main] [239] [file open fail]
+[2022-01-24 17:52:57] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-24 17:53:39] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-24 17:53:53] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-24 17:54:10] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-24 18:03:16] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-25 10:51:02] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-25 11:21:12] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
+[2022-01-25 11:24:33] [ERROR  ] [windows/source/windows.c      ] [main           ] [241 ] [file open fail]
