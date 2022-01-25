@@ -22,8 +22,7 @@
 
 #include "3-1-leetcode.h"
 #include "1-1-print.h"
-#include "1-2-myinfor.h"
-#include "1-3-myerror.h"
+#include "1-4-log.h"
 #include "1-6-num.h"
 
 /***************************************Macros***********************************/

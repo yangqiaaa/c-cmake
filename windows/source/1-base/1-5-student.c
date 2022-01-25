@@ -17,8 +17,7 @@
 
 /***************************************Includes***********************************/
 #include "1-1-print.h"
-#include "1-2-myinfor.h"
-#include "1-3-myerror.h"
+#include "1-4-log.h"
 #include "1-5-student.h"
 
 #include <windows.h>

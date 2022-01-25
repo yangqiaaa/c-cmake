@@ -19,9 +19,9 @@
 //#include"xxx.h"
 //#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "1-1-print.h"
-#include "1-2-myinfor.h"
-#include "1-3-myerror.h"
 #include "1-4-log.h"
 #include "1-4-pfy.h"
 #include "1-5-student.h"
@@ -237,8 +237,12 @@ int main(void)
 
     //In Windows system, color printing needs to call the screen clearing function, 
     //otherwise it is just random code
-    
-    myerror(ERROR_FILE_OPEN_FAIL);
+
+    //default LOG_LEVEL_INFOR
+    log_set_level(LOG_LEVEL_WARNING);  
+    myerror(ERROR_LOG_SET_LEVEL_FAIL);
+    myerror(ERROR_LIST_INIT_FAIL);
+    myinfor(INFOR_LOG_SET_LEVEL_SUCCESS);
 	login();
     run_main();
     
